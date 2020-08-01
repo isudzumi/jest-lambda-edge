@@ -1,5 +1,5 @@
 {
-  "name": "jest-lambda-edge-extended",
+  "name": "jest-lambda-edge",
   "version": "1.0.0",
   "main": "index.js",
   "author": "Hiroaki ITO <mail@isudzumi.com>",
