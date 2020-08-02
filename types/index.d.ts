@@ -4,3 +4,9 @@ declare namespace jest {
         toRedirect(): R;
     }
 }
+
+declare module NodeJS {
+  interface Global {
+    expect: jest.Expect;
+  }
+}
