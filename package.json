@@ -14,5 +14,8 @@
   "scripts": {
     "test": "jest"
   },
-  "types": "types/index.d.ts"
+  "types": "types/index.d.ts",
+  "dependencies": {
+    "jest-matcher-utils": "^26.2.0"
+  }
 }
