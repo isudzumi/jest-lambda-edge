@@ -1,9 +1,14 @@
 {
   "name": "jest-lambda-edge",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "dist/index.js",
   "author": "Hiroaki ITO <mail@isudzumi.com>",
   "license": "MIT",
+  "files": [
+    "dist",
+    "README.md",
+    "types/index.d.ts"
+  ],
   "devDependencies": {
     "@types/aws-lambda": "^8.10.59",
     "@types/jest": "^26.0.8",
@@ -12,7 +17,9 @@
     "typescript": "^3.9.7"
   },
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "build": "tsc -p tsconfig.build.json",
+    "typecheck": "tsc -p tsconfig.json"
   },
   "types": "types/index.d.ts",
   "dependencies": {
