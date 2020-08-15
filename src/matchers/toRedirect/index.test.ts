@@ -5,23 +5,11 @@ import {
   CloudFrontRequestEvent,
   CloudFrontRequestHandler
 } from 'aws-lambda';
-import viewerRequestEvent from '../../../fixtures/lambda-edge/viewer-request.json'
 
 const mockCallback = jest.fn();
-const setResult = (event: CloudFrontRequestResult) => (): CloudFrontRequestResult => event;
-const lambdaEdgeHandler = (setResultFn: () => CloudFrontRequestResult, callback: CloudFrontRequestCallback): void => {
-  return callback(null, setResultFn());
+const lambdaEdgeHandler = (result: CloudFrontRequestResult, callback: CloudFrontRequestCallback): void => {
+  return callback(null, result);
 };
-
-const redirectResponse: CloudFrontRequestResult = {
-  status: '301',
-  headers: {
-    location: [{
-      key: 'Location',
-      value: 'foo.com'
-    }]
-  }
-}
 
 beforeEach(() => {
   expect.extend(matcher);
@@ -29,7 +17,33 @@ beforeEach(() => {
 
 describe('.toRedirect', () => {
   test('passes when given an CloudFront request', () => {
-    lambdaEdgeHandler(setResult(redirectResponse), mockCallback);
+    const redirectResponse: CloudFrontRequestResult = {
+      status: '301',
+      headers: {
+        location: [{
+          key: 'Location',
+          value: 'foo.com'
+        }]
+      }
+    }
+    lambdaEdgeHandler(redirectResponse, mockCallback);
     expect(mockCallback).toRedirect();
   });
+
+  it('shouldn\'t pass as redirection when given an request directly', () => {
+    const request: CloudFrontRequestResult = {
+      clientIp: '203.0.113.1',
+      method: "GET",
+      querystring: "",
+      uri: "/",
+      headers: {
+        "user-agent": [{
+            key: "User-Agent",
+            value: "curl/7.66.0"
+          }],
+      }
+    }
+    lambdaEdgeHandler(request, mockCallback);
+    expect(mockCallback).not.toRedirect();
+  })
 });
