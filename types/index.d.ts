@@ -3,6 +3,7 @@ declare namespace jest {
     interface Matchers<R> {
         toRedirect(): R;
         toRedirectTo(targetLink: string): R;
+        toBeHttpStatus(httpStatus: number): R;
     }
 }
 
