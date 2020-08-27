@@ -4,6 +4,7 @@ declare namespace jest {
         toRedirect(): R;
         toRedirectTo(targetLink: string): R;
         toBeHttpStatus(httpStatus: number): R;
+        toBeRequest(): R;
     }
 }
 
