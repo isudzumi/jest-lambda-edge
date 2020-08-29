@@ -1,4 +1,4 @@
-![test status badge](https://github.com/isudzumi/jest-lambda-edge/workflows/test/badge.svg)
+[![test status badge](https://github.com/isudzumi/jest-lambda-edge/workflows/test/badge.svg)](https://github.com/isudzumi/jest-lambda-edge/actions)
 
 # jest-lambda-edge
 
