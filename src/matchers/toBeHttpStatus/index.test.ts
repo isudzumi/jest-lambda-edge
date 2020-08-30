@@ -15,7 +15,7 @@ beforeEach(() => {
   expect.extend(matcher);
 })
 
-describe('.toRedirect', () => {
+describe('.toBeHttpStatus', () => {
   test('passes when given an CloudFront request', () => {
     const redirectResponse: CloudFrontRequestResult = {
       status: '301'
